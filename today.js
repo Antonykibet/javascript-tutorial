@@ -149,10 +149,137 @@ let user={
     },
 }
 console.log("hello "+user.sayHi());
-*/
+
 let user={
     name:"Antony",
     "what he likes":"painting",
 }
 let container="what he likes";
 console.log(user["name"]);
+
+
+let calculator={
+    a:0,
+    b:0,
+    read(num1,num2){
+        this.a=num1;
+        this.b=num2;
+    },
+    sum(){
+        return console.log(this.a +this.b); 
+    },
+    mul(){
+        return console.log(this.a*this.b);
+    }
+}
+calculator.read(5,6);
+calculator.sum();
+calculator.mul();
+
+let ladder={
+    step:0,
+    up(){
+        this.step+=1;
+        return this;
+    },
+    down(){
+        this.step-=1
+        return this;
+    },
+    show(){
+        console.log(this.step);
+        return this;
+    }
+}
+
+ladder.up().down().up().up().show();
+
+//constructor functions
+function User(name){
+    this.name=name;
+    return 
+}
+let ann= new User("Ann");
+console.log(ann.name);//ann
+
+
+let obj={}
+function A(){
+    return obj; 
+};
+function B(){
+    return obj;
+};
+let a= new A();
+let b = new B();
+console.log(a==b);//true  ,they have the same object, obj
+
+function A(){
+    return;
+}
+function B(){
+    return;
+}
+a=new function A();
+b=new function B();
+console.log(a==b);//false  ,they have different objects
+
+function Calculator(){
+    this.a=0;
+    this.b=0;
+    this.getValues=function(num1,num2){
+        this.a=num1;
+        this.b=num2;
+    }
+    this.sum=function(){
+        return console.log(this.a+this.b);
+    }
+    this.mul=function(){
+        return console.log(this.a*this.b);
+    }
+}
+
+let calc=new Calculator();
+calc.getValues(8,6);
+calc.sum();
+calc.mul();
+
+
+function Accumulator(startingValue){
+    this.value=startingValue;
+    this.read=function(num){
+        return this.value=this.value+num;
+    }
+}
+
+let accumulator=new Accumulator(8);
+accumulator.read(5);
+console.log(accumulator.value)
+*/
+
+function Student(name,age,gpa){
+    this.name=name;
+    this.age=age;
+    this.gpa=gpa;
+    this.classes=["math","bio","chem"];
+    this.add=function(subject){
+        this.classes.push(subject);
+    };
+    this.drop=function(subject){
+        this.index=this.classes.indexOf(subject);
+        this.classes.splice(this.index,1);
+    };
+}
+
+let ann= new Student("Ann",20,3.6);
+ann.add("phy");
+ann.add("kisw");
+ann.drop("bio");
+console.log(ann.classes);
+
+/*
+let myArray=["anto","kibet","ruto","koech"];
+let index=myArray.indexOf("kibet");
+myArray.splice(index,1);
+console.log(myArray);
+*/
