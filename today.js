@@ -255,7 +255,7 @@ function Accumulator(startingValue){
 let accumulator=new Accumulator(8);
 accumulator.read(5);
 console.log(accumulator.value)
-*/
+
 
 function Student(name,age,gpa){
     this.name=name;
@@ -266,7 +266,7 @@ function Student(name,age,gpa){
         this.classes.push(subject);
     };
     this.drop=function(subject){
-        this.index=this.classes.indexOf(subject);
+        this.index=this.classes.indexOf(subject);//indexOf() method returns the index of an array element.
         this.classes.splice(this.index,1);
     };
 }
@@ -277,9 +277,53 @@ ann.add("kisw");
 ann.drop("bio");
 console.log(ann.classes);
 
-/*
+
 let myArray=["anto","kibet","ruto","koech"];
 let index=myArray.indexOf("kibet");
 myArray.splice(index,1);
 console.log(myArray);
+*/
+
+//OPTIONAL CHAINING
+
+//The ?. checks the left part for null/undefined and allows the evaluation to proceed if it’s not so.For example:
+let i=0;
+function add(){
+    return i+=1;
+}
+let user=null;
+user.add();//add() doesn't run because the left side is a null
+console.log(i);//0
+/*
+user={
+    name:"Antony",
+    sayHi(){
+        console.log("Hi,"+user.name)
+    }
+};
+user2={}
+user2.sayHi?.()
+user.sayHi();
+
+let userAdmin = {
+    admin() {
+      alert("I am admin");
+    }
+  };
+  
+  let userGuest = {};
+  
+  userAdmin.admin?.(); // I am admin
+  
+  userGuest.admin?.(); // nothing happens (no such method)
+//   Here, in both lines we first use the dot (userAdmin.admin) to get admin property, because we assume that the user object exists, so it’s safe read from it.
+  
+//   Then ?.() checks the left part: if the admin function exists, then it runs (that’s so for userAdmin). Otherwise (for userGuest) the evaluation stops without errors.
+  
+//   The ?.[] syntax also works, if we’d like to use brackets [] to access properties instead of dot .. Similar to previous cases, it allows to safely read a property from an object that may not exist.
+// The optional chaining ?. syntax has three forms:
+
+// obj?.prop – returns obj.prop if obj exists, otherwise undefined.
+// obj?.[prop] – returns obj[prop] if obj exists, otherwise undefined.
+// obj.method?.() – calls obj.method() if obj.method exists, otherwise returns undefined.
 */
