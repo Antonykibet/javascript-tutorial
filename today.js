@@ -194,7 +194,7 @@ let ladder={
 
 ladder.up().down().up().up().show();
 
-//constructor functions
+//CONSTRUCTOR FUNCTIONS
 function User(name){
     this.name=name;
     return 
@@ -282,19 +282,19 @@ let myArray=["anto","kibet","ruto","koech"];
 let index=myArray.indexOf("kibet");
 myArray.splice(index,1);
 console.log(myArray);
-*/
+
 
 //OPTIONAL CHAINING
-
+//to avaoid errors
 //The ?. checks the left part for null/undefined and allows the evaluation to proceed if it’s not so.For example:
 let i=0;
 function add(){
     return i+=1;
 }
 let user=null;
-user.add();//add() doesn't run because the left side is a null
+user.add();//Instead of giving an error,add() doesn't run because the left side is a null
 console.log(i);//0
-/*
+
 user={
     name:"Antony",
     sayHi(){
@@ -327,3 +327,32 @@ let userAdmin = {
 // obj?.[prop] – returns obj[prop] if obj exists, otherwise undefined.
 // obj.method?.() – calls obj.method() if obj.method exists, otherwise returns undefined.
 */
+
+function Restaurant(name){
+    this.name=name;
+    this.menu=[];
+    this.reviews=[];
+    this.addMenu=function(food){
+        this.menu.push(food);
+    }
+    this.dellMenu=function(food){
+        let index=this.menu.indexOf(food);
+        this.menu.splice(index,1)
+    }
+    this.addReview=function(review){
+        this.reviews.push(review);
+    }
+    this.displayReviews=function(){
+        for(let i=0;i<this.reviews.length;i++){
+            console.log(this.reviews[i]);
+        }
+    }
+}
+let pronto= new Restaurant("pronto");
+pronto.addMenu("pilau");
+pronto.addMenu("rice");
+pronto.addMenu("mukimo");
+pronto.dellMenu("rice");
+pronto.addReview("chonjo");
+pronto.addReview("fuego");
+pronto.displayReviews();
