@@ -256,6 +256,43 @@ let accumulator=new Accumulator(8);
 accumulator.read(5);
 console.log(accumulator.value)
 
+// Create a constructor function for a restaurant that has properties for name,
+// menu items, and reviews. Use this constructor to create several restaurant objects
+// and include methods to add and remove menu items, and add and display reviews.
+function Restaurant(name){
+    this.name=name;
+    this.menu=[];
+    this.reviews=[];
+    this.addMenu=function(food){
+        this.menu.push(food);
+    }
+    this.dellMenu=function(food){
+        let index=this.menu.indexOf(food);
+        this.menu.splice(index,1)
+    }
+    this.addReview=function(review){
+        this.reviews.push(review);
+    }
+    this.displayReviews=function(){
+        for(let i=0;i<this.reviews.length;i++){
+            console.log(this.reviews[i]);
+        }
+    }
+}
+let pronto= new Restaurant("pronto");
+pronto.addMenu("pilau");
+pronto.addMenu("rice");
+pronto.addMenu("mukimo");
+pronto.dellMenu("rice");
+pronto.addReview("chonjo");
+pronto.addReview("fuego");
+pronto.displayReviews();
+
+// The splice() method in JavaScript is a method of the Array object that allows you to add or remove elements from an array. It modifies the original array, and it takes in three arguments:
+
+// The index at which to start changing the array (required)
+// The number of elements to remove (optional)
+// The elements to add to the array (optional)
 
 function Student(name,age,gpa){
     this.name=name;
@@ -326,33 +363,16 @@ let userAdmin = {
 // obj?.prop – returns obj.prop if obj exists, otherwise undefined.
 // obj?.[prop] – returns obj[prop] if obj exists, otherwise undefined.
 // obj.method?.() – calls obj.method() if obj.method exists, otherwise returns undefined.
+
+// SYMBOL TYPE
+// By specification, only two primitive types may serve as object property keys:
+
+// string type, or
+// symbol type.
+// Otherwise, if one uses another type, such as number, it’s autoconverted to string. So that obj[1] is the same as obj["1"], and obj[true] is the same as obj["true"].
+
+// Until now we’ve been using only strings.
+
+// Now let’s explore symbols, see what they can do for us.
 */
 
-function Restaurant(name){
-    this.name=name;
-    this.menu=[];
-    this.reviews=[];
-    this.addMenu=function(food){
-        this.menu.push(food);
-    }
-    this.dellMenu=function(food){
-        let index=this.menu.indexOf(food);
-        this.menu.splice(index,1)
-    }
-    this.addReview=function(review){
-        this.reviews.push(review);
-    }
-    this.displayReviews=function(){
-        for(let i=0;i<this.reviews.length;i++){
-            console.log(this.reviews[i]);
-        }
-    }
-}
-let pronto= new Restaurant("pronto");
-pronto.addMenu("pilau");
-pronto.addMenu("rice");
-pronto.addMenu("mukimo");
-pronto.dellMenu("rice");
-pronto.addReview("chonjo");
-pronto.addReview("fuego");
-pronto.displayReviews();
