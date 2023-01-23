@@ -374,5 +374,35 @@ let userAdmin = {
 // Until now we’ve been using only strings.
 
 // Now let’s explore symbols, see what they can do for us.
-*/
 
+// Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: Symbol.for(key) returns (creates if needed) a global symbol with key as the name. Multiple calls of Symbol.for with the same key return exactly the same symbol.
+
+// Symbols have two main use cases:
+
+// “Hidden” object properties.
+
+// If we want to add a property into an object that “belongs” to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in for..in, so it won’t be accidentally processed together with other properties. Also it won’t be accessed directly, because another script does not have our symbol. So the property will be protected from accidental use or overwrite.
+
+// So we can “covertly” hide something into objects that we need, but others should not see, using symbolic properties.
+
+Global symbols
+As we’ve seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities. For instance, different parts of our application want to access symbol "id" meaning exactly the same property.
+
+To achieve that, there exists a global symbol registry. We can create symbols in it and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
+
+In order to read (create if absent) a symbol from the registry, use Symbol.for(key).
+
+That call checks the global registry, and if there’s a symbol described as key, then returns it, otherwise creates a new symbol Symbol(key) and stores it in the registry by the given key.
+
+For instance:
+
+// read from the global registry
+let id = Symbol.for("id"); // if the symbol did not exist, it is created
+
+// read it again (maybe from another part of the code)
+let idAgain = Symbol.for("id");
+
+// the same symbol
+alert( id === idAgain ); // true
+Symbols inside the registry are called global symbols. If we want an application-wide symbol, accessible everywhere in the code – that’s what they are for.
+*/
