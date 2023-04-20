@@ -100,7 +100,7 @@ const user={
 };
 let a=user;
 a.name="Eugene";
-console.log(user.name);
+console.log(a.name);//Eugene
 
 const user={
     name:"antony",
@@ -197,7 +197,7 @@ ladder.up().down().up().up().show();
 //CONSTRUCTOR FUNCTIONS
 function User(name){
     this.name=name;
-    return 
+    return; 
 }
 let ann= new User("Ann");
 console.log(ann.name);//ann
@@ -322,7 +322,7 @@ console.log(myArray);
 
 
 //OPTIONAL CHAINING
-//to avaoid errors
+//to avoid errors
 //The ?. checks the left part for null/undefined and allows the evaluation to proceed if it’s not so.For example:
 let i=0;
 function add(){
@@ -332,7 +332,7 @@ let user=null;
 user.add();//Instead of giving an error,add() doesn't run because the left side is a null
 console.log(i);//0
 
-user={
+let user={
     name:"Antony",
     sayHi(){
         console.log("Hi,"+user.name)
@@ -340,7 +340,7 @@ user={
 };
 user2={}
 user2.sayHi?.()
-user.sayHi();
+
 
 let userAdmin = {
     admin() {
@@ -398,11 +398,191 @@ For instance:
 
 // read from the global registry
 let id = Symbol.for("id"); // if the symbol did not exist, it is created
-
+(
 // read it again (maybe from another part of the code)
 let idAgain = Symbol.for("id");
 
 // the same symbol
 alert( id === idAgain ); // true
 Symbols inside the registry are called global symbols. If we want an application-wide symbol, accessible everywhere in the code – that’s what they are for.
+
+
+let user={
+    name:'Anna',
+    age:20,
+    sayHi(){
+        console.log(`Hi ${user.name} i am ${user.age}`);
+    }
+}
+user.sayHi()
+
+
+
+Methods push and unshift can add multiple elements at once:
+
+An array is a special kind of object. The square brackets used to access a property arr[0] actually come from the object syntax. That’s essentially the same as obj[key], where arr is the object, while numbers are used as keys.
+Remember, there are only eight basic data types in JavaScript (see the Data types chapter for more info). Array is an object and thus behaves like an object.
+
+For instance, it is copied by reference:
+
+let fruits = ["Banana"]
+
+let arr = fruits; // copy by reference (two variables reference the same array)
+
+alert( arr === fruits ); // true
+
+arr.push("Pear"); // modify the array by reference
+alert( fruits ); // Banana, Pear - 2 items now
+Why is it faster to work with the end of an array than with its beginning? Let’s see what happens during the execution:
+
+fruits.shift(); // take 1 element from the start
+It’s not enough to take and remove the element with the index 0. Other elements need to be renumbered as well.
+
+The shift operation must do 3 things:
+
+Remove the element with the index 0.
+Move all elements to the left, renumber them from the index 1 to 0, from 2 to 1 and so on.
+Update the length property.
+
+some UI/UX
+Skeuomorphism is a design concept that mimics real-world objects to help users understand how to use specific digital software.
+Nuemophism
+
+let arry=["anto",7,"kibet",5,"ruto","koech",9];
+for(let key of arry){
+    console.log(key);
+    // anto
+    // 7
+    // kibet
+    // 5
+    // ruto
+    // koech
+    // 9
+}
+
+// What is this code going to show?
+let fruits = ["Apples", "Pear", "Orange"];
+let shoppingCart = fruits;
+shoppingCart.push("Banana");
+console.log(fruits.length)
+// The result is 4:
+// That’s because arrays are objects. So both shoppingCart and fruits are the references to the same array.
+
+// Create an array styles with items “Jazz” and “Blues”.
+// Append “Rock-n-Roll” to the end.
+// Replace the value in the middle with “Classics”. Your code for finding the middle value should work for any arrays with odd length.
+// Strip off the first value of the array and show it.
+// Prepend Rap and Reggae to the array.
+let styles=["jazz","Blues"];
+styles.push("Rock-and-Roll")
+styles[Math.floor(styles.length-1)/2]="Classics";
+styles.unshift("Rap","Reggae");
+
+let arr=[4,5,2,7,9,10,4]
+let sum=0;
+for(let key of arr){
+    sum+=key;
+}
+console.log(sum);
+
+
+//remembering 'this'
+let employee={
+    name:"Antony",
+    age:30,
+    intro(){
+        console.log(`Hello my name is ${this.name} I am ${this.age} 
+        old.`)
+    },
+}
+employee.intro()
+
+let student={
+    1:"Grace",
+    age:20,
+    class:"B",
+}
+
+let arr=Array.from(student);
+console.log(arr[1]);
+
+
+let student={
+    name:"Antony",
+    age:20,
+    school:"MMU",
+}
+console.log(student);
+console.log(JSON.stringify(student))
+
+
+let kenya = new Map();
+kenya.set(1,"Nairobi");
+kenya.set(2,"Kiambu");
+kenya.set(3,"Machakos");
+kenya.set(4,"Kisumu");
+
+
+
+//map chaining, method return the map
+kenya.set(1,"Nairobi").set(5,"Mombasa").set(6,"Kitale")
+//console.log(kenya.get(6));
+
+//looping
+for (let num of kenya.keys()){
+    console.log(num);
+}
+
+for (let num of kenya.values()){
+    console.log(num);
+}
+
+for (let num of kenya){
+    console.log(num);
+}
+
+let visitor= new Map([["Antony",20],["letting",19],["Ann",18]]);
+visitor.forEach((value,key)=>{console.log(key+value)})
+
+we can create a map from an object by using 
+Object.entries that returns an array of key, value pairs, 
+we can do the oposite by using Object.fromEntries()
+
+//A Set is a special type collection – “set of values” (without keys), where each value may occur only once.let fruitArray=["mango","melon","berry","banana","mango"];
+let fruits= new Set(fruitArray);
+
+fruits.forEach((value)=>{console.log(value);});
+
+
+function unique(arr){
+    //Array.From() returns a new array from an iterable
+    return Array.from(new Set(arr))
+}
+
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+let sort=unique(values);
+sort.forEach((value)=>{console.log(value)})
+
+
+function anagram(arr){
+    let map=new Map();
+    for(word of arr){
+        let sorted=word.toLowerCase().split('').sort().join();
+        map.set(sorted,word);
+    }
+    return Array.from(map.values());
+}
+
+let ar = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+console.log(anagram(ar));
 */
+let map = new Map();
+
+map.set("name", "John");
+
+let keys = Array.from(map.keys());
+keys.push("Antony");
+console.log(keys);
