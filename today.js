@@ -578,7 +578,7 @@ function anagram(arr){
 
 let ar = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 console.log(anagram(ar));
-*/
+
 let map = new Map();
 
 map.set("name", "John");
@@ -586,3 +586,30 @@ map.set("name", "John");
 let keys = Array.from(map.keys());
 keys.push("Antony");
 console.log(keys);
+
+//JSON
+//stringify()
+let student1={
+    name:"antony",
+    age:21,
+    school:"MMU",
+}
+console.log(JSON.stringify(student1));
+//If an object has toJSON, then it is called by JSON.stringify.
+
+//JSON.parse()
+
+// stringified array
+let numbers = "[0, 1, 2, 3]";
+
+numbers = JSON.parse(numbers);
+
+alert( numbers[1] ); // 1
+*/
+let user = {
+    name: "John Smith",
+    age: 35
+  };
+
+let userEncoded=JSON.stringify(user);
+let userDecoded=JSON.parse(userEncoded);
