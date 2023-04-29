@@ -698,7 +698,7 @@ alert( Array.from(str) ); // H,e,l,l,o
 //Array.from operates on both array-likes and iterables.
 //The spread syntax works only with iterables.
 //So, for the task of turning something into an array, Array.from tends to be more universal.
-*/
+
 //Copy from array/object.
 //usually we would:
 let arr1=[1,1,2,2,3,3];
@@ -714,7 +714,7 @@ arr1Copy=[...arr1];
 console.log(JSON.stringify(arr1)==JSON.stringify(arr1Copy));
 obj1Copy={...obj1};
 console.log(JSON.stringify(obj1)==JSON.stringify(obj1Copy));
-/*
+
 //Rest Parameter ...
 
 //A function can be called with any number of arguments, no matter how it is defined.
@@ -730,4 +730,70 @@ function restTest(num1,num2,...args){
 restTest(1,2,3,4,5,6,7)
 //btw the rest parameters should be at the end.
 
+
+
+//something intresting
+let numbers=[1,2,3,4,5,6,7,8,9,10];
+function isEven(number){
+    if(number%2===0){
+        return number
+    }
+}
+let evenNum=numbers.filter(isEven);
+console.log(JSON.stringify(evenNum));
+
+let numbers=[1,2,3,4,5,6,7,8,9,10];
+function inBetween(num1,num2){
+    return function (x){
+        return x>=num1 && x<=num2;
+    }
+    
+}
+console.log(numbers.filter(inBetween(5,9)));
+
+let numbers=[1,2,3,4,5,6,7,8,9];
+function inArray(...args){
+    return function(x){
+        let found = false;
+        for(let arg of args){
+            if(x == arg) {
+                found = true;
+              }
+        }
+        return found;
+    }
+}
+
+
+console.log(numbers.filter(inArray(4,5,6,7)))
+
+
+//practise call backs and filters
+//Write a function that takes an array of numbers and returns a new array with only the odd numbers.
+
+let numbers=[1,2,3,4,5,6,7,8,9,10];
+function isOdd(x){
+    return !(x%2==0);
+}
+console.log(numbers.filter(isOdd));
+
+
+//Write a function that takes an array of strings and returns a new array with only the strings that start with the letter "a".
+
+let names=['Antony','kibet','Ann','Grace','Ben'];
+function filterNames(x) {
+    return  x[0].toLowerCase()=='a';
+}
+console.log(names.filter(filterNames));
+
+
+//Write a function that takes an array of objects representing books, and returns a new array with only the books whose title contains the word "JavaScript".
+let books=[{name:'Javascript book1'},{name:'Python book1'},{name:'Javascript Fundamentals'},{name:'Javascript volume2'}]
+function bookChecker(x){
+    return x.name.toLowerCase().includes('javascript');
+}
+let javascriptBooks=books.filter(bookChecker)
+for(let book of javascriptBooks){
+    console.log(book.name);
+}
 */
