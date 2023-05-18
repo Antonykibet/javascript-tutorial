@@ -813,5 +813,5 @@ let user={
                                         user.name="Antony";
                                         console.log(user.name);
 }
-get and set 
+get and 
 */
