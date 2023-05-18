@@ -4,7 +4,7 @@ Write the code, one line for each action:
 
 let user={};
 user.name="john";
-user.surname="smith";
+user.surname="smith";see
 console.log(user.name);
 user.name="pete";
 console.log(user.name);
@@ -795,5 +795,22 @@ function bookChecker(x){
 let javascriptBooks=books.filter(bookChecker)
 for(let book of javascriptBooks){
     console.log(book.name);
+}
+
+let user={};
+Object.definerProperty(user,"name",{value:"Antony"});
+
+/get and set
+let user={
+        name:"",
+            get jina(){
+                    return name;
+                        },
+                            set jina(value){
+                                    this.name=value;
+                                        }
+                                        }
+                                        user.name="Antony";
+                                        console.log(user.name);
 }
 */
