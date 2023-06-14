@@ -814,4 +814,128 @@ let user={
                                         console.log(user.name);
 }
 get and 
+
+let user={
+    name:"Antony",
+    age: 20,
+    action(){
+        this.isSleeping = true;
+    },
+    list(){
+      for(let prop of this){
+        console.log(prop);
+      }
+    }
+}
+user.list();
+// user.action();
+// console.log(user.isSleeping);
+
+
+//PROTOTYPE, INHERITANCE
+// In JavaScript, all objects have a hidden [[Prototype]] property that’s either another object or null.
+// We can use obj.__proto__ to access it (a historical getter/setter, there are other ways, to be covered soon).
+// The object referenced by [[Prototype]] is called a “prototype”.
+// If we want to read a property of obj or call a method, and it doesn’t exist, then JavaScript tries to find it in the prototype.
+// Write/delete operations act directly on the object, they don’t use the prototype (assuming it’s a data property, not a setter).
+// If we call obj.method(), and the method is taken from the prototype, this still references obj. So methods always work with the current object even if they are inherited.
+// The for..in loop iterates over both its own and its inherited properties. All other key/value-getting methods only operate on the object itself.
+
+let head = {
+    glasses: 1
+  };
+  
+  let table = {
+    pen: 3,
+    __proto__:head,
+  };
+  
+  let bed = {
+    sheet: 1,
+    pillow: 2,
+    __proto__:table,
+  };
+  
+  let pockets = {
+    money: 2000,
+    __proto__:bed,
+  };
+
+console.log(pockets.glasses);
+Answer the question: is it faster to get glasses as pockets.glasses or head.glasses? Benchmark if needed.
+In modern engines, performance-wise, there’s no difference whether we take a property from an object or its prototype. They remember where the property was found and reuse it in the next request.
+
+For instance, for pockets.glasses they remember where they found glasses (in head), and next time will search right there. They are also smart enough to update internal caches if something changes, so that optimization is safe.
+
+
+let hamster={
+    stomach:[],
+    eat(food){
+        this.stomach.push(food);
+    }
+}
+
+let speedy ={
+    __proto__:hamster
+    stomach:[],
+}
+let lazy ={
+    __proto__:hamster
+    stomach:[],
+}
+
+speedy.eat("carrot");
+console.log(lazy.stomach[0]);
+
+//OR 
+
+let hamster = {
+  stomach: [],
+
+  eat(food) {
+    // assign to this.stomach instead of this.stomach.push
+    this.stomach = [food];
+  }
+};
+
+let speedy = {
+   __proto__: hamster
+};
+
+let lazy = {
+  __proto__: hamster
+};
+
+// Speedy one found the food
+speedy.eat("apple");
+alert( speedy.stomach ); // apple
+
+// Lazy one's stomach is empty
+alert( lazy.stomach ); // <nothing>
+
+
+//reminding myself object constructors 
+function Car(type,model,origin){
+    this.type=type;
+    this.model=model;
+    this.origin=origin;
+}
+
+let car1=new Car("toyota","prius","Japan");
+console.log(car1.model);
+
+
+// All built-in objects follow the same pattern:
+// The methods are stored in the prototype (Array.prototype, Object.prototype, Date.prototype, etc.)
+// The object itself stores only the data (array items, object properties, the date)
+// Primitives also store methods in prototypes of wrapper objects: Number.prototype, String.prototype and Boolean.prototype. Only undefined and null do not have wrapper objects
+// Built-in prototypes can be modified or populated with new methods. But it’s not recommended to change them. The only allowable case is probably when we add-in a new standard, but it’s not yet supported by the JavaScript engine
 */
+
+let user={};
+Object.defineProperties(user,{name:{value:"Antony", writable:false,configurable: true}});
+Object.defineProperties(user,{name:{writable:true}});
+user.name="kibet";
+
+
+console.log(Object.getOwnPropertyDescriptors(user));
