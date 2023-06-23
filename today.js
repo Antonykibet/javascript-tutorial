@@ -1005,8 +1005,58 @@ If an error object is not needed, we can omit it by using catch { instead of cat
 We can also generate our own errors using the throw operator. Technically, the argument of throw can be anything, but usually it’s an error object inheriting from the built-in Error class. More on extending errors in the next chapter.
 
 Rethrowing is a very important pattern of error handling: a catch block usually expects and knows how to handle the particular error type, so it should rethrow errors it doesn’t know.
-
+try...finally
+The try...finally construct, without catch clause, is also useful. We apply it when we don’t want to handle errors here (let them fall through), but want to be sure that processes that we started are finalized.
 Even if we don’t have try...catch, most environments allow us to setup a “global” error handler to catch errors that “fall out”. In-browser, that’s window.onerror.
+
+
+
+
+
+class ValidationError {
+    constructor(){
+    }
+}
+
+console.log(new ValidationError().constructor.name);
+
+
+class ValidationError extends Error{
+    constructor(message){
+        super(message);
+        this.message=message;
+        this.name="ValidationError";
+    }
+}
+
+
+
+function blaa(user){
+    let user=JSON.parse(user);
+    if(!user.name){
+        throw new ValidationError("name not provided");
+    }
+    return user;
+}
+
+blaa('{"age":20}');
+console.lo
+
+
+
+
+
+
+
+
+// try{
+//     blaa('{"age":20,}');
+// }catch(err){
+//     if(err instanceof ValidationError){
+//         console.log(err.name);
+//         console.log(err.message);
+//     }
+    
+// }
+
 */
-
-
